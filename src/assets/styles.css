@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap');
+
+* {
+  font-family: "Karla", sans-serif;
+}
+
+:root {
+  --primary-color: #fff;
+  --secondary-color: #2AAF76;
+}
+
+.item-img {
+  width: 20px;
+}
