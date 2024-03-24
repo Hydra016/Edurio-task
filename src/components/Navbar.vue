@@ -19,21 +19,35 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref, watch } from 'vue';
+import { useRoute } from 'vue-router';
 
 export default defineComponent({
   name: 'AppNavbar',
-  data() {
-    return {
-      currRoute: '/'
-    }
-  },
-  watch: {
-    '$route': {
-      handler() {
-        this.currRoute = this.$route.path
-      }
-    }
+  //OPTIONS API
+  // data() {
+  //   return {
+  //     currRoute: '/'
+  //   }
+  // },
+  // watch: {
+  //   '$route': {
+  //     handler() {
+  //       this.currRoute = this.$route.path
+  //     }
+  //   }
+  // }
+
+  //COMPOSITION API
+  setup() {
+    let currRoute = ref<string>('/')
+    const route = useRoute()
+
+    watch(() => route.path, (newPath) => {
+      currRoute.value = newPath
+    })
+
+    return { currRoute }
   }
 });
 </script>

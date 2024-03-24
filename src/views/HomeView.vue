@@ -19,18 +19,31 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, onMounted, ref } from 'vue';
 import { Question } from '@/types/Question';
 export default defineComponent({
   name: 'HomeView',
-  data() {
-    return {
-      questions: [] as Question[]
-    }
-  },
-  created() {
-    const existingQuestions = JSON.parse(localStorage.getItem('questions') || '[]');
-    this.questions = existingQuestions;
+  //OPTIONS API
+  // data() {
+  //   return {
+  //     questions: [] as Question[]
+  //   }
+  // },
+  // created() {
+  //   const existingQuestions = JSON.parse(localStorage.getItem('questions') || '[]');
+  //   this.questions = existingQuestions;
+  // }
+
+  //COMPOSTION API
+  setup() {
+    let questions = ref<Question[]>([]);
+
+    onMounted(() => {
+      const existingQuestions = JSON.parse(localStorage.getItem('questions') || '[]');
+      questions.value = existingQuestions;
+    })
+
+    return { questions }
   }
 });
 </script>
